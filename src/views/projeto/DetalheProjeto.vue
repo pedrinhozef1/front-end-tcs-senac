@@ -462,7 +462,7 @@ export default {
     async carregarProjetoServicos(idProjetoServico) {
       this.erro = '';
       api
-        .get('http://localhost:8080/projeto-servico/servicos/' + idProjetoServico)
+        .get('http://167.71.84.210:8080/projeto-servico/servicos/' + idProjetoServico)
         .then(response => {
           this.data = response.data.conteudo;
           this.total = response.data.totalRegistros;
@@ -477,7 +477,7 @@ export default {
       const dadosProjeto = await this.$crudProjetos.findById(idProjeto);
       this.telefoneInstituicao = dadosProjeto.data.instituicao.telefone;
       api
-        .get('http://localhost:8080/projeto-insumo/insumos/' + idProjeto)
+        .get('http://167.71.84.210:8080/projeto-insumo/insumos/' + idProjeto)
         .then(retorno => {
           this.dataInsumosProjeto = retorno.data.conteudo;
           this.totalInsumosProjetos = retorno.data.totalRegistros;
@@ -490,7 +490,7 @@ export default {
     async carregarPrestacaoContas(idProjeto) {
       this.erro = '';
       api
-        .get('http://localhost:8080/prestacao-conta/projeto/' + idProjeto)
+        .get('http://167.71.84.210:8080/prestacao-conta/projeto/' + idProjeto)
         .then(retorno => {
           this.dataPrestacaoConta = retorno.data.conteudo;
         }).catch(erro => {
@@ -546,7 +546,7 @@ export default {
     async concluirInsumo(idProjetoInsumo) {
       try {
         getClient()
-          .put('http://localhost:8080/projeto-insumo/' + idProjetoInsumo + "/concluir")
+          .put('http://167.71.84.210:8080/projeto-insumo/' + idProjetoInsumo + "/concluir")
           .then(response => {
             this.carregarProjetoInsumos(this.id);
           });
@@ -584,7 +584,7 @@ export default {
     },
     async concluirServico(idProjetoServico) {
       getClient()
-        .put('http://localhost:8080/projeto-servico/servicos/' + idProjetoServico + "/concluir-servico")
+        .put('http://167.71.84.210:8080/projeto-servico/servicos/' + idProjetoServico + "/concluir-servico")
         .then(response => {
           this.carregarProjetoServicos(this.id);
         });
@@ -592,7 +592,7 @@ export default {
     async vincularVoluntario(idProjetoServico) {
       if (this.idVoluntarioUsuario) {
         getClient()
-          .put('http://localhost:8080/projeto-servico/servicos/' + idProjetoServico + "/vincular-voluntario/" + this.idVoluntarioUsuario)
+          .put('http://167.71.84.210:8080/projeto-servico/servicos/' + idProjetoServico + "/vincular-voluntario/" + this.idVoluntarioUsuario)
           .then(response => {
             this.carregarProjetoServicos(this.id);
           });
@@ -600,7 +600,7 @@ export default {
     },
     async aprovarReprovarVoluntario(idProjetoServico, isAprovado) {
       getClient()
-        .put('http://localhost:8080/projeto-servico/servicos/' + idProjetoServico + "/aprovar-reprovar-voluntario?isAprovado=" + isAprovado)
+        .put('http://167.71.84.210:8080/projeto-servico/servicos/' + idProjetoServico + "/aprovar-reprovar-voluntario?isAprovado=" + isAprovado)
         .then(response => {
           this.carregarProjetoServicos(this.id);
         });
